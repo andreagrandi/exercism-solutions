@@ -50,7 +50,7 @@ func FromRNA(input string) ([]string, error) {
 		}
 
 		if err == ErrInvalidBase {
-			return sequence, err
+			return nil, err
 		}
 
 		sequence = append(sequence, protein)
