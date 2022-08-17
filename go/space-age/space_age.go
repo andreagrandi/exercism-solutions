@@ -21,6 +21,9 @@ var secondsInAYearOnEarth = 31557600
 
 // Age is a method returning the age of a given Planet
 func Age(seconds float64, planet Planet) float64 {
-	result := seconds / (planets[planet] * float64(secondsInAYearOnEarth))
-	return math.Round(result*100) / 100
+	if planetSeconds, ok := planets[planet]; ok {
+		result := seconds / (planetSeconds * float64(secondsInAYearOnEarth))
+		return math.Round(result*100) / 100
+	}
+	return -1
 }
