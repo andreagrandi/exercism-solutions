@@ -1,33 +1,60 @@
 package acronym
 
+// This is an auto-generated file. Do not change it manually. Run the generator to update the file.
+// See https://github.com/exercism/go#synchronizing-tests-and-instructions
 // Source: exercism/problem-specifications
-// Commit: 5ae1dba Acronym canonical-data: Remove redundant test case
-// Problem Specifications Version: 1.3.0
+// Commit: 5fc501b Remove unneeded nesting (#1798)
 
 type acronymTest struct {
-	input    string
-	expected string
+	description string
+	input       string
+	expected    string
 }
 
-var stringTestCases = []acronymTest{
+var testCases = []acronymTest{
 	{
-		input:    "Portable Network Graphics",
-		expected: "PNG",
+		description: "basic",
+		input:       "Portable Network Graphics",
+		expected:    "PNG",
 	},
 	{
-		input:    "Ruby on Rails",
-		expected: "ROR",
+		description: "lowercase words",
+		input:       "Ruby on Rails",
+		expected:    "ROR",
 	},
 	{
-		input:    "First In, First Out",
-		expected: "FIFO",
+		description: "punctuation",
+		input:       "First In, First Out",
+		expected:    "FIFO",
 	},
 	{
-		input:    "GNU Image Manipulation Program",
-		expected: "GIMP",
+		description: "all caps word",
+		input:       "GNU Image Manipulation Program",
+		expected:    "GIMP",
 	},
 	{
-		input:    "Complementary metal-oxide semiconductor",
-		expected: "CMOS",
+		description: "punctuation without whitespace",
+		input:       "Complementary metal-oxide semiconductor",
+		expected:    "CMOS",
+	},
+	{
+		description: "very long abbreviation",
+		input:       "Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me",
+		expected:    "ROTFLSHTMDCOALM",
+	},
+	{
+		description: "consecutive delimiters",
+		input:       "Something - I made up from thin air",
+		expected:    "SIMUFTA",
+	},
+	{
+		description: "apostrophes",
+		input:       "Halley's Comet",
+		expected:    "HC",
+	},
+	{
+		description: "underscore emphasis",
+		input:       "The Road _Not_ Taken",
+		expected:    "TRNT",
 	},
 }

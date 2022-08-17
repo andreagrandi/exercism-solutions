@@ -12,16 +12,28 @@ import (
 
 // Abbreviate should have a comment documenting it.
 func Abbreviate(s string) string {
-	lowerInput := strings.ToLower(s)
-	titledInput := strings.Title(lowerInput)
-
 	acronym := ""
 
-	for _, char := range titledInput {
-		if unicode.IsLetter(char) {
-			if unicode.IsUpper(char) {
-				acronym = acronym + string(char)
-			}
+	// sanitise "-"
+	s = strings.ReplaceAll(s, "-", " ")
+
+	// remove all special chars
+	onlyLettersString := ""
+	for _, c := range s {
+		if unicode.IsLetter(c) || unicode.IsSpace(c) {
+			onlyLettersString += string(c)
+		}
+	}
+
+	// split the string into words
+	words := strings.Split(onlyLettersString, " ")
+
+	// for each word we remove spaces, uppercase it and take the first letter
+	for _, word := range words {
+		word = strings.TrimSpace(word)
+		if len(word) > 0 {
+			word = strings.ToUpper(word)
+			acronym += string(word[0])
 		}
 	}
 
