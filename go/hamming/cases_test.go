@@ -1,87 +1,78 @@
 package hamming
 
+// This is an auto-generated file. Do not change it manually. Run the generator to update the file.
+// See https://github.com/exercism/go#synchronizing-tests-and-instructions
 // Source: exercism/problem-specifications
-// Commit: b5d154b hamming: move inputs (strand1, strand2) to input object
-// Problem Specifications Version: 2.1.0
+// Commit: 7a8722a Reorder keys (#1960)
 
 var testCases = []struct {
-	s1   string
-	s2   string
-	want int
+	description string
+	s1          string
+	s2          string
+	want        int
+	expectError bool
 }{
-	{ // empty strands
-		"",
-		"",
-		0,
+	{
+		description: "empty strands",
+		s1:          "",
+		s2:          "",
+		want:        0,
+		expectError: false,
 	},
-	{ // identical strands
-		"A",
-		"A",
-		0,
+	{
+		description: "single letter identical strands",
+		s1:          "A",
+		s2:          "A",
+		want:        0,
+		expectError: false,
 	},
-	{ // long identical strands
-		"GGACTGA",
-		"GGACTGA",
-		0,
+	{
+		description: "single letter different strands",
+		s1:          "G",
+		s2:          "T",
+		want:        1,
+		expectError: false,
 	},
-	{ // complete distance in single nucleotide strands
-		"A",
-		"G",
-		1,
+	{
+		description: "long identical strands",
+		s1:          "GGACTGAAATCTG",
+		s2:          "GGACTGAAATCTG",
+		want:        0,
+		expectError: false,
 	},
-	{ // complete distance in small strands
-		"AG",
-		"CT",
-		2,
+	{
+		description: "long different strands",
+		s1:          "GGACGGATTCTG",
+		s2:          "AGGACGGATTCT",
+		want:        9,
+		expectError: false,
 	},
-	{ // small distance in small strands
-		"AT",
-		"CT",
-		1,
+	{
+		description: "disallow first strand longer",
+		s1:          "AATG",
+		s2:          "AAA",
+		want:        0,
+		expectError: true,
 	},
-	{ // small distance
-		"GGACG",
-		"GGTCG",
-		1,
+	{
+		description: "disallow second strand longer",
+		s1:          "ATA",
+		s2:          "AGTG",
+		want:        0,
+		expectError: true,
 	},
-	{ // small distance in long strands
-		"ACCAGGG",
-		"ACTATGG",
-		2,
+	{
+		description: "disallow empty first strand",
+		s1:          "",
+		s2:          "G",
+		want:        0,
+		expectError: true,
 	},
-	{ // non-unique character in first strand
-		"AAG",
-		"AAA",
-		1,
-	},
-	{ // non-unique character in second strand
-		"AAA",
-		"AAG",
-		1,
-	},
-	{ // same nucleotides in different positions
-		"TAG",
-		"GAT",
-		2,
-	},
-	{ // large distance
-		"GATACA",
-		"GCATAA",
-		4,
-	},
-	{ // large distance in off-by-one strand
-		"GGACGGATTCTG",
-		"AGGACGGATTCT",
-		9,
-	},
-	{ // disallow first strand longer
-		"AATG",
-		"AAA",
-		-1,
-	},
-	{ // disallow second strand longer
-		"ATA",
-		"AGTG",
-		-1,
+	{
+		description: "disallow empty second strand",
+		s1:          "G",
+		s2:          "",
+		want:        0,
+		expectError: true,
 	},
 }
